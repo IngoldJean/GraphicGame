@@ -1,3 +1,6 @@
+package screen
+
+import common.ScreenManager
 import javafx.event.{ActionEvent, EventHandler}
 import javafx.geometry.{HPos, Insets, Pos}
 import javafx.scene.Scene
@@ -24,7 +27,9 @@ class EntryScreen extends javafx.application.Application{
 
     val event = new EventHandler[ActionEvent]() {
       override def handle(e: ActionEvent): Unit = {
-        welcomeButton.setText("button pressed")
+        ScreenManager.removeAllChildren(root)
+        val secondScreen = new SecondScreen
+        secondScreen.drawSecondScreen(root)
       }
     }
 
