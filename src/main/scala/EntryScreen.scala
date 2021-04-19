@@ -1,3 +1,4 @@
+import javafx.event.{ActionEvent, EventHandler}
 import javafx.geometry.{HPos, Insets, Pos}
 import javafx.scene.Scene
 import javafx.scene.control.Button
@@ -19,6 +20,15 @@ class EntryScreen extends javafx.application.Application{
     welcomeText.setFill(Color.ALICEBLUE)
 
     val welcomeButton = new Button("Click to enter")
+
+
+    val event = new EventHandler[ActionEvent]() {
+      override def handle(e: ActionEvent): Unit = {
+        welcomeButton.setText("button pressed")
+      }
+    }
+
+    welcomeButton.setOnAction(event)
 
     root.setPadding(new Insets(10, 10, 10, 10))
     root.setVgap(5)
