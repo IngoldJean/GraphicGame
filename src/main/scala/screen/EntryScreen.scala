@@ -28,8 +28,8 @@ class EntryScreen extends javafx.application.Application{
     val event = new EventHandler[ActionEvent]() {
       override def handle(e: ActionEvent): Unit = {
         ScreenManager.removeAllChildren(root)
-        val secondScreen = new SecondScreen
-        secondScreen.drawSecondScreen(root)
+        val dateScreen = new DateScreen
+        dateScreen.drawDateScreen(root)
       }
     }
 
