@@ -27,8 +27,15 @@ class DateScreen {
   def drawDateScreen(root:GridPane): Unit = {
     val dateText = new Text(this.getTheDateString)
 
-    val toto = this.readDataFile.apply("/Users/Jean/IdeaProjects/GraphicGame/src/main/resources/data.txt")
-    println("get " + toto.size)
+    val lines = this.readDataFile.apply("/Users/Jean/IdeaProjects/GraphicGame/src/main/resources/data.txt")
+
+    var rowIndex = 1
+    for(line <- lines){
+      val text = new Text(line)
+      text.setFill(Color.ALICEBLUE)
+      root.add(text, 0, rowIndex)
+      rowIndex += 1
+    }
     dateText.setFill(Color.ALICEBLUE)
 
 
