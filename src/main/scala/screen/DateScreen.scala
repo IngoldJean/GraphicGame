@@ -1,10 +1,11 @@
 package screen
 
+import api.timeserie.ReadTimeSerie
 import javafx.scene.layout.GridPane
 import javafx.scene.paint.Color
-import javafx.scene.text.{Font, FontPosture, FontWeight, Text}
+import javafx.scene.text.Text
+import positions.reader.PositionsReader
 
-import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import scala.io.Source
@@ -27,17 +28,21 @@ class DateScreen {
   def drawDateScreen(root:GridPane): Unit = {
     val dateText = new Text(this.getTheDateString)
 
-    val lines = this.readDataFile.apply("/Users/Jean/IdeaProjects/GraphicGame/src/main/resources/data.txt")
+    val lines = PositionsReader.readPositionsFromFile("/Users/Jean/IdeaProjects/GraphicGame/src/main/resources/data.txt")
 
     var rowIndex = 1
     for(line <- lines){
-      val text = new Text(line)
-      text.setFill(Color.ALICEBLUE)
-      root.add(text, 0, rowIndex)
+      val nameOfThePosition = new Text(line.name)
+      val numberOfStock = new Text(line.numberOfStock.toString)
+      nameOfThePosition.setFill(Color.ALICEBLUE)
+      numberOfStock.setFill(Color.ALICEBLUE)
+
+      root.add(nameOfThePosition, 0, rowIndex)
+      root.add(numberOfStock, 1, rowIndex)
       rowIndex += 1
     }
-    dateText.setFill(Color.ALICEBLUE)
 
+    dateText.setFill(Color.ALICEBLUE)
 
     root.add(dateText,0,0)
   }
