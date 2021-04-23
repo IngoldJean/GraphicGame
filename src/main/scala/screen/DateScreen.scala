@@ -1,6 +1,8 @@
 package screen
 
+import api.model.RootInterface
 import api.timeserie.ReadTimeSerie
+import io.circe.parser
 import javafx.scene.layout.GridPane
 import javafx.scene.paint.Color
 import javafx.scene.text.Text
@@ -41,7 +43,6 @@ class DateScreen {
       root.add(numberOfStock, 1, rowIndex)
       rowIndex += 1
     }
-
     dateText.setFill(Color.ALICEBLUE)
 
     root.add(dateText,0,0)
