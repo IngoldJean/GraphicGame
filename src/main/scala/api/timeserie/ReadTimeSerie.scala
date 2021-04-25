@@ -1,7 +1,7 @@
 package api.timeserie
 
 import common.ApiKey
-import scalaj.http.{Http, HttpResponse}
+import scalaj.http.Http
 
 object ReadTimeSerie {
 

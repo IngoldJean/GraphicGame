@@ -1,8 +1,12 @@
 package api.model
 
+import cats.syntax.either._
+import common.DateManager
 import io.circe.Decoder.Result
 import io.circe.{Decoder, HCursor}
-import cats.syntax.either._
+
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 case class FullTimeSerieJson(datas: TimeSeriesDaily)
 
@@ -23,11 +27,15 @@ object FullTimeSerieJson {
 
 object TimeSeriesDaily{
   implicit val decoder: Decoder[TimeSeriesDaily] = new Decoder[TimeSeriesDaily] {
-    override def apply(hCursor: HCursor): Result[TimeSeriesDaily] =
+    override def apply(hCursor: HCursor): Result[TimeSeriesDaily] = {
+
+      val previousWorkingDay = DateManager.getPreviousWorkingDay(LocalDate.now())
+      val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
       for {
-        todayValue <- hCursor.get[TimeSerie]("2021-04-23")
+        todayValue <- hCursor.get[TimeSerie](dtf.format(previousWorkingDay))
       } yield {
         TimeSeriesDaily(todayValue)
+    }
     }
   }
 }
