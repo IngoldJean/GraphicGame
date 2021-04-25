@@ -129,6 +129,6 @@ class TimeSerieTest extends FunSuite{
                  |    }
                  |}""".stripMargin
 
-    assert(parser.decode[RootInterface](data).right.get ===  RootInterface(TimeSeriesDaily(TimeSerie("141.3100".toDouble, "143.6100".toDouble, "140.9500".toDouble, "142.4300".toDouble, "4554472".toInt))))
+    assert(parser.decode[FullTimeSerieJson](data).right.get ===  FullTimeSerieJson(TimeSeriesDaily(TimeSerie("141.3100".toDouble, "143.6100".toDouble, "140.9500".toDouble, "142.4300".toDouble, "4554472".toInt))))
   }
 }

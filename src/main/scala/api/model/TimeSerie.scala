@@ -4,22 +4,19 @@ import io.circe.Decoder.Result
 import io.circe.{Decoder, HCursor}
 import cats.syntax.either._
 
-
-
-
-case class RootInterface(datas: TimeSeriesDaily)
+case class FullTimeSerieJson(datas: TimeSeriesDaily)
 
 case class TimeSeriesDaily (todayValue : TimeSerie)
 
 case class TimeSerie(open: Double, high: Double, low: Double, close: Double, volume: Int)
 
-object RootInterface {
-  implicit val decoder: Decoder[RootInterface] = new Decoder[RootInterface] {
-    override def apply(hCursor: HCursor): Result[RootInterface] =
+object FullTimeSerieJson {
+  implicit val decoder: Decoder[FullTimeSerieJson] = new Decoder[FullTimeSerieJson] {
+    override def apply(hCursor: HCursor): Result[FullTimeSerieJson] =
       for {
         timeseries <- hCursor.get[TimeSeriesDaily]("Time Series (Daily)")
       } yield {
-        RootInterface(timeseries)
+        FullTimeSerieJson(timeseries)
       }
   }
 }
@@ -35,9 +32,7 @@ object TimeSeriesDaily{
   }
 }
 
-
 object TimeSerie {
-
   implicit val decoder: Decoder[TimeSerie] = new Decoder[TimeSerie] {
     override def apply(hCursor: HCursor): Result[TimeSerie] =
       for {
