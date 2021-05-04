@@ -22,10 +22,12 @@ class EntryScreen extends javafx.application.Application{
     welcomeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 20))
     welcomeText.setFill(Color.ALICEBLUE)
 
-    val welcomeButton = new Button("Click to enter")
+    val currentPositionsButton = new Button("See my positions")
+
+    val addStockButton = new Button("Add value")
 
 
-    val event = new EventHandler[ActionEvent]() {
+    val eventMyPositons = new EventHandler[ActionEvent]() {
       override def handle(e: ActionEvent): Unit = {
         ScreenManager.removeAllChildren(root)
         val dateScreen = new DateScreen
@@ -33,7 +35,16 @@ class EntryScreen extends javafx.application.Application{
       }
     }
 
-    welcomeButton.setOnAction(event)
+    val eventAddPositon = new EventHandler[ActionEvent]() {
+      override def handle(e: ActionEvent): Unit = {
+        ScreenManager.removeAllChildren(root)
+        val researchScreen = new ResearchScreen
+        researchScreen.drawResearchScreen(root)
+      }
+    }
+
+    currentPositionsButton.setOnAction(eventMyPositons)
+    addStockButton.setOnAction(eventAddPositon)
 
     root.setPadding(new Insets(10, 10, 10, 10))
     root.setVgap(5)
@@ -42,10 +53,12 @@ class EntryScreen extends javafx.application.Application{
     root.setStyle("-fx-background-color: BLACK;")
 
     GridPane.setHalignment(welcomeText, HPos.CENTER)
-    GridPane.setHalignment(welcomeButton, HPos.CENTER)
+    GridPane.setHalignment(currentPositionsButton, HPos.CENTER)
+    GridPane.setHalignment(addStockButton, HPos.CENTER)
 
     root.add(welcomeText, 0, 0)
-    root.add(welcomeButton, 0, 1)
+    root.add(currentPositionsButton, 0, 1)
+    root.add(addStockButton, 0, 2)
   }
 
   override def start(primaryStage: Stage): Unit = {
