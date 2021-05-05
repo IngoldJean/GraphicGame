@@ -16,9 +16,17 @@ class ResearchScreen {
 
   def createResearchResultRow(root: GridPane): BestMatches => Unit = {
     matche =>
-      val text = new Text(matche.symbol)
-      text.setFill(Color.ALICEBLUE)
-      root.addRow(rowCurrentNumber, text)
+      val symbol = new Text(matche.symbol)
+      val name = new Text(matche.name)
+      val region = new Text(matche.region)
+      val currency = new Text(matche.currency)
+      val buttonAdd = new Button("Add")
+      symbol.setFill(Color.ALICEBLUE)
+      name.setFill(Color.ALICEBLUE)
+      region.setFill(Color.ALICEBLUE)
+      currency.setFill(Color.ALICEBLUE)
+
+      root.addRow(rowCurrentNumber, symbol, name, region, currency, buttonAdd)
       rowCurrentNumber += 1
   }
 
