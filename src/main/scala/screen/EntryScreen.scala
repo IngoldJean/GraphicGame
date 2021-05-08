@@ -12,8 +12,8 @@ import javafx.stage.Stage
 
 class EntryScreen extends javafx.application.Application{
 
-  val width = 500
-  val height  = 300
+  val width = 1000
+  val height  = 600
 
   def drawEntryScreen(root:GridPane): Unit = {
 
