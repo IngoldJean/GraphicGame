@@ -15,12 +15,7 @@ class EntryScreen extends javafx.application.Application{
   val width = 1000
   val height  = 600
 
-  def drawEntryScreen(root:GridPane): Unit = {
-
-    val welcomeText = new Text("Welcome to my graphical app")
-
-    welcomeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 20))
-    welcomeText.setFill(Color.ALICEBLUE)
+  def drawEntryScreen(root:GridPane, welcomeText: Text): Unit = {
 
     val currentPositionsButton = new Button("See my positions")
 
@@ -68,6 +63,11 @@ class EntryScreen extends javafx.application.Application{
     primaryStage.setScene(scene)
     primaryStage.show()
 
-    drawEntryScreen(gridPane)
+    val welcomeText = new Text("Welcome to my graphical app")
+
+    welcomeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 20))
+    welcomeText.setFill(Color.ALICEBLUE)
+
+    drawEntryScreen(gridPane, welcomeText)
   }
 }

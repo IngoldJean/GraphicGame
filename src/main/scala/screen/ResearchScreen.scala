@@ -8,7 +8,7 @@ import javafx.event.{ActionEvent, EventHandler}
 import javafx.scene.control.{Button, TextField}
 import javafx.scene.layout.GridPane
 import javafx.scene.paint.Color
-import javafx.scene.text.Text
+import javafx.scene.text.{Font, FontPosture, FontWeight, Text}
 import positions.model.Position
 import positions.writer.PositionsWriter
 
@@ -42,6 +42,12 @@ class ResearchScreen {
             case None =>
             case _ => val position = Position(matche.symbol, numberStock.getCharacters.toString.toInt)
               PositionsWriter.writePositions(position, "/Users/Jean/IdeaProjects/GraphicGame/src/main/resources/data.txt")
+              ScreenManager.removeAllChildren(root)
+              val entryScreen = new EntryScreen
+              val messageText = new Text("Position " + matche.name + " was correctly added")
+              messageText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 20))
+              messageText.setFill(Color.ALICEBLUE)
+              entryScreen.drawEntryScreen(root, messageText)
           }
         }
       }

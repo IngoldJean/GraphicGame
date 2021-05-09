@@ -35,7 +35,7 @@ object TimeSeriesDaily{
         todayValue <- hCursor.get[TimeSerie](dtf.format(previousWorkingDay))
       } yield {
         TimeSeriesDaily(todayValue)
-    }
+      }
     }
   }
 }
